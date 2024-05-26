@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo "{{ secrets.DOCKER_PASSWORD }}" | docker login -u "{{ secrets.DOCKER_USERNAME }}" --password-stdin
+      - run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
       - run: docker build -t jamieecode/react-test -f Dockerfile.dev .
       - run: docker run -e CI=true jamieecode/react-test npm test
 
